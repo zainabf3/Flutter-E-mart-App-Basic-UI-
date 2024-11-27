@@ -2,6 +2,12 @@ import 'package:emart_app/consts/consts.dart';
 
 const socialIconlist = [icFacebookLogo, icGoogleLogo, icTwitterLogo];
 
+final List<Map<String, dynamic>> socialLinks = [
+  {'icon': icFacebookLogo, 'url': 'https://www.facebook.com'}, // Facebook
+  {'icon': icGoogleLogo, 'url': 'https://mail.google.com'}, // Google
+  {'icon': icTwitterLogo, 'url': 'https://www.twitter.com'}, // Twitter
+];
+
 const sliderList = [imgSlider1, imgSlider2, imgSlider3, imgSlider4];
 
 const secondSliderList = [imgSs1, imgSs2, imgSs3, imgSs4];

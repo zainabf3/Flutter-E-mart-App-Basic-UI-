@@ -1,5 +1,25 @@
 import 'package:emart_app/consts/consts.dart';
 
+Widget applogoWidget() {
+  //using velocity X here
+  return Image.asset(icAppLogo)
+      .box
+      .white
+      .size(77, 77)
+      .padding(const EdgeInsets.all(8))
+      .rounded
+      .make();
+}
+
+Widget bgWidget({Widget? child}) {
+  return Container(
+    decoration: const BoxDecoration(
+        image: DecorationImage(
+            image: AssetImage(imgBackground), fit: BoxFit.fill)),
+    child: child,
+  );
+}
+
 Widget customTextField({String? title, String? hint, controller}) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,

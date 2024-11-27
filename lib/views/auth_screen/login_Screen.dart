@@ -2,14 +2,17 @@ import 'package:emart_app/consts/consts.dart';
 import 'package:emart_app/consts/lists.dart';
 import 'package:emart_app/views/auth_screen/signup_screen.dart';
 import 'package:emart_app/views/home_screen/home.dart';
-import 'package:emart_app/widgets_common/applogo_widget.dart';
-import 'package:emart_app/widgets_common/bg_widget.dart';
-import 'package:emart_app/widgets_common/custom_textfield.dart';
-import 'package:emart_app/widgets_common/our_button.dart';
+import 'package:emart_app/widgets_common/customization.dart';
+// import 'package:emart_app/widgets_common/bg_widget.dart';
+// import 'package:emart_app/widgets_common/custom_textfield.dart';
+import 'package:emart_app/widgets_common/buttons.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +44,8 @@ class LoginScreen extends StatelessWidget {
                     title: login,
                     textcolor: whiteColor,
                     onPress: () {
-                      Get.to(() => const Home());
+                      launchUrl('http://www.facebook.com');
+                      //Get.to(() => const Home());
                     }).box.width(context.screenWidth - 50).make(),
                 5.heightBox,
                 createNew.text.color(fontGrey).make(),
@@ -71,18 +75,36 @@ class LoginScreen extends StatelessWidget {
                     3,
                     (index) => Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: CircleAvatar(
-                            backgroundColor: lightGrey,
-                            radius: 25,
-                            child: Image.asset(
-                              socialIconlist[index],
-                              width: 30,
+                          child: GestureDetector(
+                            onTap: () async {
+                              // final String url = socialLinks[index]['url'];
+
+                             launchUrl('http://www.facebook.com');
+
+
+                            },
+                            child: CircleAvatar(
+                              backgroundColor: lightGrey,
+                              radius: 25,
+                              child: Image.asset(
+                                socialLinks[index]['icon'],
+                                width: 30,
+                              ),
                             ),
                           ),
                         )))
           ],
         ),
       ),
-    ));
+    )
+    );
+  }
+  void launchURL(String url) async {
+    final Uri uri = Uri.parse(url);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
+    } else {
+      print('Could not launch $url');
+    }
   }
 }

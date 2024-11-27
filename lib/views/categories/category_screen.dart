@@ -1,8 +1,9 @@
 import 'package:emart_app/consts/consts.dart';
 import 'package:emart_app/consts/lists.dart';
 import 'package:emart_app/views/categories/category_details.dart';
-import 'package:emart_app/widgets_common/bg_widget.dart';
-import 'package:flutter/material.dart';
+
+import 'package:emart_app/widgets_common/customization.dart';
+
 import 'package:get/get.dart';
 
 class CategoryScreen extends StatelessWidget {
@@ -13,7 +14,11 @@ class CategoryScreen extends StatelessWidget {
     return bgWidget(
         child: Scaffold(
       appBar: AppBar(
-        title: cat.text.fontFamily(bold).white.make(),
+        title: const Text(
+          cat,
+          style: TextStyle(fontFamily: bold, fontSize: 25, color: whiteColor),
+        ),
+        automaticallyImplyLeading: false,
       ),
       body: Container(
           padding: const EdgeInsets.all(12),

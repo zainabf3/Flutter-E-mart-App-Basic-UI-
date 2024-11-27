@@ -1,7 +1,6 @@
 import 'package:emart_app/consts/consts.dart';
 import 'package:emart_app/consts/lists.dart';
-import 'package:emart_app/widgets_common/bg_widget.dart';
-import 'package:flutter/material.dart';
+import 'package:emart_app/widgets_common/customization.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -10,6 +9,13 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return bgWidget(
         child: Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'User Profile ',
+          style: TextStyle(fontFamily: bold, fontSize: 25, color: whiteColor),
+        ),
+        automaticallyImplyLeading: false,
+      ),
       body: SafeArea(
         child: Container(
           padding: const EdgeInsets.all(8),
@@ -38,16 +44,18 @@ class ProfileScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       "Dummy User".text.fontFamily(semibold).white.make(),
-                      "DummyUser@example.com".text.white.make(),
+                      "User@example.com".text.white.make(),
                     ],
                   )),
                   OutlinedButton(
                       style: OutlinedButton.styleFrom(
-                          minimumSize: const Size(50, 50),
+                          minimumSize: const Size(10, 40),
                           side: const BorderSide(
                             color: whiteColor,
                           )),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
                       child: "Log Out".text.fontFamily(semibold).white.make()),
                 ],
               ),
@@ -63,7 +71,7 @@ class ProfileScreen extends StatelessWidget {
                   .make(),
 
               //buttons section
-              70.heightBox,
+              22.heightBox,
 
               ListView.separated(
                       shrinkWrap: true,
@@ -77,7 +85,7 @@ class ProfileScreen extends StatelessWidget {
                         return ListTile(
                           leading: Image.asset(
                             profilebuttonsIcon[index],
-                            width: 22,
+                            width: 20,
                           ),
                           title: profileButtonslist[index]
                               .text

@@ -44,9 +44,9 @@ class Home extends StatelessWidget {
         bottomNavigationBar: Obx(
           () => BottomNavigationBar(
             currentIndex: controller.currentNavIndex.value,
-            selectedItemColor: redColor,
+            selectedItemColor: whiteColor,
             selectedLabelStyle: const TextStyle(fontFamily: bold),
-            backgroundColor: whiteColor,
+            backgroundColor: redColor,
             type: BottomNavigationBarType.fixed,
             items: navBarItem,
             // on tap highight navbar icons

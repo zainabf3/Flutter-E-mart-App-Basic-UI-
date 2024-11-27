@@ -1,4 +1,4 @@
-import 'package:emart_app/widgets_common/bg_widget.dart';
+import 'package:emart_app/widgets_common/customization.dart';
 import 'package:emart_app/consts/consts.dart';
 
 class CategoryDetails extends StatelessWidget {
