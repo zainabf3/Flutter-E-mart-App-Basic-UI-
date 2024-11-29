@@ -44,8 +44,8 @@ class LoginScreen extends StatelessWidget {
                     title: login,
                     textcolor: whiteColor,
                     onPress: () {
-                      launchUrl('http://www.facebook.com');
-                      //Get.to(() => const Home());
+                      // launchUrl('http://www.facebook.com');
+                      Get.to(() => const Home());
                     }).box.width(context.screenWidth - 50).make(),
                 5.heightBox,
                 createNew.text.color(fontGrey).make(),
@@ -76,13 +76,25 @@ class LoginScreen extends StatelessWidget {
                     (index) => Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: GestureDetector(
-                            onTap: () async {
-                              // final String url = socialLinks[index]['url'];
+                               onTap: () async {
+                                 final String url = "https://www.facebook.com/";
+                                 final Uri uri = Uri.parse(url);
+                                 if (await canLaunchUrl(uri)) {
+                                   await launchUrl(uri,
+                                       mode: LaunchMode.externalApplication);
+                                 } else {
+                                   throw 'Could not launch $uri';
+                                 }
+                               },
 
-                             launchUrl('http://www.facebook.com');
 
-
-                            },
+                             //async {
+                            //   // final String url = socialLinks[index]['url'];
+                            //
+                            //  // launchUrl('http://www.facebook.com');
+                            //
+                            //
+                            // },
                             child: CircleAvatar(
                               backgroundColor: lightGrey,
                               radius: 25,

@@ -1,5 +1,5 @@
 import 'package:emart_app/consts/consts.dart';
-import 'package:emart_app/views/auth_screen/login_Screen.dart';
+import 'package:emart_app/views/auth_screen/login_screen.dart';
 import 'package:emart_app/widgets_common/customization.dart';
 
 import 'package:get/get.dart';
