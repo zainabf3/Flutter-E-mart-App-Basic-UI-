@@ -44,3 +44,32 @@ Widget customTextField({String? title, String? hint, controller}) {
     ],
   );
 }
+
+
+Widget text(
+    String? text, {
+      var fontSize = 18.0,
+      Color? textColor,
+      var fontFamily,
+      var isCentered = false,
+      var maxLine = 1,
+      var latterSpacing = 0.5,
+      bool textAllCaps = false,
+      var isLongText = false,
+      bool lineThrough = false,
+    }) {
+  return Text(
+    textAllCaps ? text!.toUpperCase() : text!,
+    textAlign: isCentered ? TextAlign.center : TextAlign.start,
+    maxLines: isLongText ? null : maxLine,
+    overflow: TextOverflow.ellipsis,
+    style: TextStyle(
+      fontFamily: fontFamily ?? null,
+      fontSize: fontSize,
+      color: textColor ?? Colors.white54,
+      height: 1.5,
+      letterSpacing: latterSpacing,
+      decoration: lineThrough ? TextDecoration.lineThrough : TextDecoration.none,
+    ),
+  );
+}

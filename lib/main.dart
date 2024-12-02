@@ -2,7 +2,8 @@ import 'package:emart_app/views/splash_Screen/splash_screen.dart';
 import 'package:get/get.dart';
 import 'consts/consts.dart';
 
-void main() {
+void main()  {
+
   runApp(const MyApp());
 }
 
