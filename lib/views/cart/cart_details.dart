@@ -17,8 +17,10 @@ class CartDetails extends StatefulWidget {
   class CartDetailState extends State<CartDetails> {
   List<ShProduct> list = []; // List to hold cart products.
 
+
   @override
   void initState() {
+
     super.initState();
     fetchData(); // Load cart data when widget initializes.
 
@@ -39,17 +41,18 @@ class CartDetails extends StatefulWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<ShProduct> visibleItems = list.take(3).toList(); //loading only 3 items from the list
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     var cartList = ListView.builder(
         scrollDirection: Axis.vertical,
-        itemCount: list.length,
+        itemCount: visibleItems.length,
         shrinkWrap: true,
         padding: const EdgeInsets.only(bottom: spacing_standard_new),
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
           return Container(
-            color: Colors.green,
+            color: Colors.white,
             margin: const EdgeInsets.only(left: spacing_standard_new, right: spacing_standard_new, top: spacing_standard_new),
            
             child: IntrinsicHeight(
@@ -58,7 +61,7 @@ class CartDetails extends StatefulWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Image.asset(
-                      "assets/images/products${list[index].images![0].src!}",
+                      "assets/images/products${visibleItems[index].images![0].src!}",
                       // cartImages + list[index].images![0].src!,
                       //"assets/images/products/dress/dress_8.jpeg",
                       width: width * 0.3,
@@ -78,7 +81,7 @@ class CartDetails extends StatefulWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 8.height,
-                                Text(list[index].name.toString(), style: boldTextStyle()).paddingOnly(left: 16),
+                                Text(visibleItems[index].name.toString(), style: boldTextStyle()).paddingOnly(left: 16),
                                 4.height,
                                 Row(
                                   children: [
@@ -110,12 +113,12 @@ class CartDetails extends StatefulWidget {
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
                                     Text(
-                                      list[index].on_sale! ? list[index].sale_price.toString().toCurrencyFormat().toString() : list[index].price.toString().toCurrencyFormat().toString(),
+                                      visibleItems[index].on_sale! ? visibleItems[index].sale_price.toString().toCurrencyFormat().toString() : visibleItems[index].price.toString().toCurrencyFormat().toString(),
                                       style: primaryTextStyle(),
                                     ),
                                     4.width,
                                     Text(
-                                      list[index].regular_price.toString().toCurrencyFormat()!,
+                                      visibleItems[index].regular_price.toString().toCurrencyFormat()!,
                                       style: const TextStyle(color: sh_textColorSecondary, fontFamily: regular, fontSize: 14.0, decoration: TextDecoration.lineThrough),
                                     ),
                                   ],
@@ -124,7 +127,7 @@ class CartDetails extends StatefulWidget {
                             ),
                           ),
                           const Divider(
-                            height: 1,
+                            height: 2,
                           ),
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -136,13 +139,18 @@ class CartDetails extends StatefulWidget {
                                   children: [
                                     const Icon(
                                       Icons.bookmark_border,
-                                      color: Colors.yellow,
+                                      color: Colors.lightGreen,
                                       size: 16,
                                     ),
                                     4.width,
-                                    Text(
+                                    const Text(
                                       "Next time buy",
-                                      style: secondaryTextStyle(),
+                                      style: TextStyle(
+                                        fontFamily: bold,
+
+
+                                      ),
+
                                       overflow: TextOverflow.ellipsis,
                                       maxLines: 1,
                                     ).expand()
@@ -156,11 +164,13 @@ class CartDetails extends StatefulWidget {
                                   children: [
                                     const Icon(
                                       Icons.delete_outline,
-                                      color: Colors.purple,
+                                      color: Colors.redAccent,
                                       size: 16,
                                     ),
                                     4.width,
-                                    Text(sh_lbl_remove, style: secondaryTextStyle()),
+                                    const Text(sh_lbl_remove, style: TextStyle(
+                                      fontFamily: bold
+                                    )),
                                   ],
                                 ),
                               )
@@ -178,7 +188,7 @@ class CartDetails extends StatefulWidget {
         });
     var paymentDetail = Container(
       margin: const EdgeInsets.fromLTRB(spacing_standard_new, spacing_standard_new, spacing_standard_new, 80),
-      decoration: BoxDecoration(border: Border.all(color: Colors.blue, width: 1.0)),
+      decoration: BoxDecoration(border: Border.all(color: Colors.blue, width: 0.7)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -186,7 +196,7 @@ class CartDetails extends StatefulWidget {
             padding: const EdgeInsets.fromLTRB(spacing_standard_new, spacing_middle, spacing_standard_new, spacing_middle),
             child: Text(sh_lbl_payment_details, style: boldTextStyle()),
           ),
-          const Divider(height: 3, color: Colors.black),
+          const Divider(height: 3, color: Colors.blue),
           Padding(
             padding: const EdgeInsets.fromLTRB(spacing_standard_new, spacing_middle, spacing_standard_new, spacing_middle),
             child: Column(
@@ -194,7 +204,7 @@ class CartDetails extends StatefulWidget {
                 Row(
                   children: [
                     text(sh_lbl_offer),
-                    4.width,
+                    5.width,
                     Text(sh_text_offer_not_available, style: primaryTextStyle()),
                   ],
                 ),
@@ -202,14 +212,14 @@ class CartDetails extends StatefulWidget {
                 Row(
                   children: [
                     text(sh_lbl_shipping_charge),
-                    text(sh_lbl_free, textColor: Colors.green, fontFamily: medium),
+                    text(sh_lbl_free, textColor: Colors.green, fontFamily: bold),
                   ],
                 ),
                 8.height,
                 Row(
                   children: [
                     text(sh_lbl_total_amount),
-                    text("₹70", textColor: sh_colorPrimary, fontFamily: bold, fontSize: 18.0),
+                    text("₹70", textColor: sh_colorPrimary, fontFamily: bold, fontSize: 16.0),
                   ],
                 ),
               ],
@@ -228,18 +238,18 @@ class CartDetails extends StatefulWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            color: Colors.greenAccent,
+            color: sh_colorPrimary,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text("₹70", style: boldTextStyle()),
-                Text(sh_lbl_see_price_detail, style: secondaryTextStyle()),
+                const Text(sh_lbl_see_price_detail, style: TextStyle(color: Colors.white)),
               ],
             ),
           ).expand(),
           Container(
-            color: sh_colorPrimary,
+            color: Colors.green,
             alignment: Alignment.center,
             height: double.infinity,
             child: text(sh_lbl_continue, textColor: sh_white, fontSize: 18.0, fontFamily: medium),
@@ -272,8 +282,8 @@ class CartDetails extends StatefulWidget {
 
 
             Container(
-              color: Colors.blue,
-              padding: const EdgeInsets.only(bottom: 60),
+              color: Colors.white,
+              padding: const EdgeInsets.only(bottom: 10),
 
               child: bottomButtons,
             )

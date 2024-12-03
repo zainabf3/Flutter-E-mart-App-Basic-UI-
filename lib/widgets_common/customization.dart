@@ -48,7 +48,7 @@ Widget customTextField({String? title, String? hint, controller}) {
 
 Widget text(
     String? text, {
-      var fontSize = 18.0,
+      var fontSize = 15.0,
       Color? textColor,
       var fontFamily,
       var isCentered = false,
@@ -64,9 +64,9 @@ Widget text(
     maxLines: isLongText ? null : maxLine,
     overflow: TextOverflow.ellipsis,
     style: TextStyle(
-      fontFamily: fontFamily ?? null,
+      fontFamily: bold,
       fontSize: fontSize,
-      color: textColor ?? Colors.white54,
+      color: textColor ?? Colors.black87,
       height: 1.5,
       letterSpacing: latterSpacing,
       decoration: lineThrough ? TextDecoration.lineThrough : TextDecoration.none,

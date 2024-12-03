@@ -4,22 +4,22 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 
-import '../Models/product_category.dart';
+// import '../Models/product_category.dart';
 import '../Models/product_list.dart';
 import 'package:intl/intl.dart';
 
 Future<String> loadContentAsset(String path) async {
   return await rootBundle.loadString(path);
 }
-
-Future<List<ShCategory>> loadCategory() async {
-  String jsonString = await loadContentAsset('assets/shophop_data/category.json');
-  final jsonResponse = json.decode(jsonString);
-  return (jsonResponse as List).map((i) => ShCategory.fromJson(i)).toList();
-}
-
+//
+// Future<List<ShCategory>> loadCategory() async {
+//   String jsonString = await loadContentAsset('assets/shophop_data/category.json');
+//   final jsonResponse = json.decode(jsonString);
+//   return (jsonResponse as List).map((i) => ShCategory.fromJson(i)).toList();
+// }
+//
 Future<List<ShProduct>> loadProducts() async {
-  String jsonString = await loadContentAsset('assets/shophop_data/products.json');
+  String jsonString = await loadContentAsset('assets/Data/products.json');
   final jsonResponse = json.decode(jsonString);
   return (jsonResponse as List).map((i) => ShProduct.fromJson(i)).toList();
 }
@@ -61,7 +61,7 @@ Future<List<String>> loadBanners() async {
 }
 
 extension StringExtension on String? {
-  String? toCurrencyFormat({var format = '\$'}) {
+  String? toCurrencyFormat({var format = '₹'}) {
     return format + this;
   }
 
